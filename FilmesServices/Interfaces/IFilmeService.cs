@@ -1,4 +1,5 @@
 ﻿using FilmesDomain.Models;
+using FilmesServices.Models.In;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace FilmesServices.Interfaces
     {
 
         public  Task<IEnumerable<Filme>> RecuperaFilmes();
+        public  Task<BaseRetorno> CriarFilme(FilmeDto filme);
+        public  Task<Filme> RecuperarFilmePorId(int id);
+
 
     }
 }

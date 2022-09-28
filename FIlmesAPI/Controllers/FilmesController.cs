@@ -2,6 +2,7 @@
 using FilmesServices.Interfaces;
 using FilmesServices.Models.In;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace FIlmesAPI.Controllers
 {
@@ -17,9 +18,44 @@ namespace FIlmesAPI.Controllers
         }
 
         [HttpGet("RecuperarFilmes")]
-        public async Task<IEnumerable<Filme>> RecuperarFilmes() =>  await _filmService.RecuperaFilmes();
+        public async Task<IEnumerable<Filme>> RecuperarFilmes() => await _filmService.RecuperaFilmes();
+
+        [HttpPost("CriarFilme")]
+        public async Task<IActionResult> CriarFilme([FromBody] FilmeDto filme)
+        {
+
+            var bs = await _filmService.CriarFilme(filme);
+
+            if (bs.Status)
+            {
+                return CreatedAtAction(nameof(RecuperarFilmePorId), new { id = Convert.ToInt32(bs.Message) });
+            }
+            else
+            {
+                return StatusCode(500, "Houve um erro, contate o adminitrador.");
+            }
 
 
-        
+        }
+
+
+        [HttpGet("RecuperarFilmePorId/{id}")]
+        public async Task<IActionResult> RecuperarFilmePorId(int id)
+        {
+            var filme = await _filmService.RecuperarFilmePorId(id);
+
+            if (filme != null)
+            {
+                return Ok(filme);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+
+
     }
 }

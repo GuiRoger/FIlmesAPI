@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace FilmesDomain.Interfaces
 {
-    public interface   IFilmeRepository
+    public interface IFilmeRepository
     {
         public Task<IEnumerable<Filme>> ListarFilmes();
+        public Task<BaseRetorno> CriarFilmes(Filme newFilme);
+        public Task<Filme> RecuperarFilmePorId(int id);
     }
 }

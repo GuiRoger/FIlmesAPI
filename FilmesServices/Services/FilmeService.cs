@@ -1,6 +1,7 @@
 ﻿using FilmesDomain.Interfaces;
 using FilmesDomain.Models;
 using FilmesServices.Interfaces;
+using FilmesServices.Models.In;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,23 @@ namespace FilmesServices.Services
             _filmeRepo = filmeRepo;
         }
 
-        public async Task<IEnumerable<Filme>> RecuperaFilmes()
+        public async Task<IEnumerable<Filme>> RecuperaFilmes() => await _filmeRepo.ListarFilmes();
+        
+
+        public async Task<BaseRetorno> CriarFilme(FilmeDto filme)
         {
-           return await _filmeRepo.ListarFilmes();
+            var newFilme = new Filme{
+                Diretor = filme.Diretor,
+                Duracao = filme.Duracao,
+                Genero = filme.Genero,
+                Titulo = filme.Titulo,
+            
+            };
+
+            return await _filmeRepo.CriarFilmes(newFilme);
         }
+
+        public async Task<Filme> RecuperarFilmePorId(int id) => await _filmeRepo.RecuperarFilmePorId(id);
+
     }
 }
