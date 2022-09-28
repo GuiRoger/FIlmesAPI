@@ -17,7 +17,7 @@ namespace FIlmesAPI.Controllers
             _filmService = filmService;
         }
 
-        [HttpGet("RecuperarFilmes")]
+        [HttpGet]
         public async Task<IEnumerable<Filme>> RecuperarFilmes() => await _filmService.RecuperaFilmes();
 
         [HttpPost("CriarFilme")]
@@ -39,7 +39,7 @@ namespace FIlmesAPI.Controllers
         }
 
 
-        [HttpGet("RecuperarFilmePorId/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> RecuperarFilmePorId(int id)
         {
             var filme = await _filmService.RecuperarFilmePorId(id);
