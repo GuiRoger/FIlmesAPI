@@ -1,4 +1,5 @@
-﻿using FilmesDomain.Models;
+﻿using AutoMapper;
+using FilmesDomain.Models;
 using FilmesServices.Interfaces;
 using FilmesServices.Models.In;
 using Microsoft.AspNetCore.Mvc;
@@ -11,24 +12,35 @@ namespace FIlmesAPI.Controllers
     public class FilmesController : Controller
     {
         private readonly IFilmeService _filmService;
+        private readonly IMapper _mapper;
 
-        public FilmesController(IFilmeService filmService)
+        public FilmesController(IFilmeService filmService, IMapper mapper)
         {
             _filmService = filmService;
+            _mapper = mapper;
         }
 
+        #region RECUPERAR FILME
         [HttpGet]
-        public async Task<IEnumerable<Filme>> RecuperarFilmes() => await _filmService.RecuperaFilmes();
+        public async Task<IEnumerable<Filme>> RecuperarFilmes() => await _filmService.RecuperaFilmes(); 
+        #endregion
 
+        #region CRIAR FILME
         [HttpPost("CriarFilme")]
         public async Task<IActionResult> CriarFilme([FromBody] CreateFilmeDto filme)
         {
 
-            var bs = await _filmService.CriarFilme(filme);
+            Filme filmeToCreate = _mapper.Map<Filme>(filme);
+
+            var bs = await _filmService.CriarFilme(filmeToCreate);
+
 
             if (bs.Status)
             {
-                return CreatedAtAction(nameof(RecuperarFilmePorId), new { id = Convert.ToInt32(bs.Message) });
+
+                var filmeRetorno = await _filmService.RecuperarFilmePorId(Convert.ToInt32(bs.Message));
+
+                return StatusCode(201, filmeRetorno);
             }
             else
             {
@@ -36,9 +48,10 @@ namespace FIlmesAPI.Controllers
             }
 
 
-        }
+        } 
+        #endregion
 
-
+        #region RECUPERAR FILME POR ID
         [HttpGet("{id}")]
         public async Task<IActionResult> RecuperarFilmePorId(int id)
         {
@@ -52,12 +65,16 @@ namespace FIlmesAPI.Controllers
             {
                 return NotFound();
             }
-        }
+        } 
+        #endregion
 
+        #region ATUALIZAR FILME
         [HttpPut("{id}")]
         public async Task<IActionResult> AtualizarFilme([FromRoute] int id, [FromBody] UpdateFilmeDto updatedFilme)
         {
-            var returnFilme = await _filmService.AtualizarFilme(updatedFilme, id);
+            Filme filmeToUpdate = _mapper.Map<Filme>(updatedFilme);
+
+            var returnFilme = await _filmService.AtualizarFilme(filmeToUpdate, id);
 
             if (returnFilme != null)
             {
@@ -69,12 +86,15 @@ namespace FIlmesAPI.Controllers
                 return NotFound("Filme não encontrado.");
 
             }
-            
-        }
+
+        } 
+        #endregion
+
+        #region DELETAR FILME
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletarFilme([FromRoute] int id)
-        {            
+        {
             var bs = await _filmService.DeletarFilme(id);
 
             if (bs.Status)
@@ -84,11 +104,13 @@ namespace FIlmesAPI.Controllers
             }
             else
             {
-                return NotFound(bs.Message); 
+                return NotFound(bs.Message);
 
             }
 
-        }
+        } 
+
+        #endregion
 
 
 

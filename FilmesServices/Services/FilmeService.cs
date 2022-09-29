@@ -22,33 +22,18 @@ namespace FilmesServices.Services
         public async Task<IEnumerable<Filme>> RecuperaFilmes() => await _filmeRepo.ListarFilmes();
         
 
-        public async Task<BaseRetorno> CriarFilme(CreateFilmeDto filme)
+        public async Task<BaseRetorno> CriarFilme(Filme filme)
         {
-            var newFilme = new Filme{
-                Diretor = filme.Diretor,
-                Duracao = filme.Duracao,
-                Genero = filme.Genero,
-                Titulo = filme.Titulo,
-            
-            };
-
-            return await _filmeRepo.CriarFilmes(newFilme);
+            return await _filmeRepo.CriarFilmes(filme);
         }
 
         public async Task<Filme> RecuperarFilmePorId(int id) => await _filmeRepo.RecuperarFilmePorId(id);
 
 
-        public async Task<Filme> AtualizarFilme(UpdateFilmeDto filme,int id)
+        public async Task<Filme> AtualizarFilme(Filme filme,int id)
         {
-            var updatedFilme = new Filme
-            {
-                Diretor = filme.Diretor,
-                Duracao = filme.Duracao,
-                Genero = filme.Genero,
-                Titulo = filme.Titulo,
-
-            };
-            return await _filmeRepo.AtualizarFilme(updatedFilme,id);
+          
+            return await _filmeRepo.AtualizarFilme(filme, id);
         }
 
 
