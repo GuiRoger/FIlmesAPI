@@ -12,8 +12,10 @@ namespace FilmesServices.Interfaces
     {
 
         public  Task<IEnumerable<Filme>> RecuperaFilmes();
-        public  Task<BaseRetorno> CriarFilme(FilmeDto filme);
+        public  Task<BaseRetorno> CriarFilme(CreateFilmeDto filme);
         public  Task<Filme> RecuperarFilmePorId(int id);
+        public  Task<Filme> AtualizarFilme(UpdateFilmeDto filme,int id);
+        public  Task<BaseRetorno> DeletarFilme(int id);
 
 
     }

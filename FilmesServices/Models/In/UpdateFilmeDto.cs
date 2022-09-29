@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FilmesServices.Models.In
 {
-    public class FilmeDto
+    public class UpdateFilmeDto
     {
 
         [Required(ErrorMessage = "O campo de título é obrigatório")]

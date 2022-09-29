@@ -21,7 +21,7 @@ namespace FIlmesAPI.Controllers
         public async Task<IEnumerable<Filme>> RecuperarFilmes() => await _filmService.RecuperaFilmes();
 
         [HttpPost("CriarFilme")]
-        public async Task<IActionResult> CriarFilme([FromBody] FilmeDto filme)
+        public async Task<IActionResult> CriarFilme([FromBody] CreateFilmeDto filme)
         {
 
             var bs = await _filmService.CriarFilme(filme);
@@ -54,6 +54,41 @@ namespace FIlmesAPI.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AtualizarFilme([FromRoute] int id, [FromBody] UpdateFilmeDto updatedFilme)
+        {
+            var returnFilme = await _filmService.AtualizarFilme(updatedFilme, id);
+
+            if (returnFilme != null)
+            {
+                return Ok(returnFilme);
+
+            }
+            else
+            {
+                return NotFound("Filme não encontrado.");
+
+            }
+            
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarFilme([FromRoute] int id)
+        {            
+            var bs = await _filmService.DeletarFilme(id);
+
+            if (bs.Status)
+            {
+                return Ok(bs.Message);
+
+            }
+            else
+            {
+                return NotFound(bs.Message); 
+
+            }
+
+        }
 
 
 

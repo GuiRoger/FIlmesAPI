@@ -60,7 +60,57 @@ namespace FilmesDbConnection.Repositorys
             return await _context.Filmes.FirstOrDefaultAsync(g=>g.Id == id);
         }
 
+        public  async Task<Filme> AtualizarFilme(Filme update,int id)
+        {
+            Filme filmeParaAtualizar = await _context.Filmes.FirstOrDefaultAsync(g=>g.Id == id);
+            
+            if (filmeParaAtualizar == null)
+                return null;
 
+            filmeParaAtualizar.Titulo = update.Titulo;
+            filmeParaAtualizar.Duracao = update.Duracao;
+            filmeParaAtualizar.Diretor = update.Diretor;
+            filmeParaAtualizar.Genero = update.Genero;
+
+                await _context.SaveChangesAsync();
+
+            return filmeParaAtualizar;           
+            
+
+        }
+
+        
+        public  async Task<BaseRetorno> DeletarFilme(int id)
+        {
+            var bs = new BaseRetorno();
+            try
+            {
+                var filme = await _context.Filmes.FirstOrDefaultAsync(g => g.Id == id);
+                if (filme == null)
+                {
+
+                    bs.Status = false;
+                    bs.Message = "Filme não encontrado.";
+                    return bs;
+                }
+
+                _context.Filmes.Remove(filme);
+
+
+                await _context.SaveChangesAsync();
+
+                bs.Message = "Deletado com sucesso.";
+                bs.Status = true;
+
+                return bs;
+            }
+            catch (Exception ex)
+            {
+                bs.Message = ex.Message;
+                bs.Status = false;
+                return bs;
+            }
+        }
 
 
     }
