@@ -5,7 +5,7 @@ using FilmesServices.Models.In;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
-namespace FIlmesAPI.Controllers
+namespace FilmesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -86,7 +86,6 @@ namespace FIlmesAPI.Controllers
                 return NotFound("Filme não encontrado.");
 
             }
-
         } 
         #endregion
 
