@@ -18,6 +18,8 @@ builder.Services.AddScoped<IFilmeService,FilmeService>();
 builder.Services.AddScoped<IFilmeRepository,FilmeRepository>();
 builder.Services.AddScoped<ICinemaService, CinemaService>();
 builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

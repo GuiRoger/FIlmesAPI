@@ -4,28 +4,29 @@ using FilmesDomain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FilmesDbConnection.Repositorys
 {
-    public class CinemaRepository : ICinemaRepository
+    public class EnderecoRepository:IEnderecoRepository
     {
         public readonly ApiDbContext _context;
-        public CinemaRepository(ApiDbContext context)
+        public EnderecoRepository(ApiDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Cinema>> ListarCinemas()
+        public async Task<IEnumerable<Endereco>> ListarEnderecos()
         {
 
-            var lstCinemas = await _context.Cinemas.ToListAsync();
+            var lstCinemas = await _context.Enderecos.ToListAsync();
             return lstCinemas;
         }
 
-        public async Task<BaseRetorno> CriarCinema(Cinema newCinema)
+        public async Task<BaseRetorno> CriarEndereco(Endereco newEndereco)
         {
 
             var bs = new BaseRetorno();
@@ -33,11 +34,11 @@ namespace FilmesDbConnection.Repositorys
             {
                 try
                 {
-                    await _context.Cinemas.AddAsync(newCinema);
+                    await _context.Enderecos.AddAsync(newEndereco);
                     await _context.SaveChangesAsync();
 
 
-                    bs.Message = newCinema.Id.ToString();
+                    bs.Message = newEndereco.Id.ToString();
                     bs.Status = true;
 
 
@@ -59,49 +60,50 @@ namespace FilmesDbConnection.Repositorys
         }
 
 
-        public async Task<Cinema> RecuperarCinemaPorId(int id)
+        public async Task<Endereco> RecuperarEnderecoPorId(int id)
         {
-            return await _context.Cinemas.FirstOrDefaultAsync(g => g.Id == id);
+            return await _context.Enderecos.FirstOrDefaultAsync(g => g.Id == id);
         }
 
-        public async Task<Cinema> AtualizarCinema(Cinema updateCinema, int id)
+        public async Task<Endereco> AtualizarEndereco(Endereco updatedEndereco, int id)
         {
-            Cinema CinemasParaAtualizar = await _context.Cinemas.FirstOrDefaultAsync(g => g.Id == id);
+            Endereco enderecosParaAtualizar = await _context.Enderecos.FirstOrDefaultAsync(g => g.Id == id);
 
-            if (CinemasParaAtualizar == null)
+            if (enderecosParaAtualizar == null)
                 return null;
 
-            CinemasParaAtualizar.Nome = updateCinema.Nome;           
-
+            enderecosParaAtualizar.Logradouro = updatedEndereco.Logradouro;
+            enderecosParaAtualizar.Numero = updatedEndereco.Numero;
+            enderecosParaAtualizar.Bairro = updatedEndereco.Bairro;       
 
             await _context.SaveChangesAsync();
 
-            return CinemasParaAtualizar;
+            return enderecosParaAtualizar;
 
 
         }
 
 
-        public async Task<BaseRetorno> DeletarCinema(int id)
+        public async Task<BaseRetorno> DeletarEndereco(int id)
         {
             var bs = new BaseRetorno();
             try
             {
-                var Cine = await _context.Cinemas.FirstOrDefaultAsync(g => g.Id == id);
-                if (Cine == null)
+                var endereco = await _context.Enderecos.FirstOrDefaultAsync(g => g.Id == id);
+                if (endereco == null)
                 {
 
                     bs.Status = false;
-                    bs.Message = "Cinema não encontrado.";
+                    bs.Message = "Endereço não encontrado.";
                     return bs;
                 }
 
-                _context.Cinemas.Remove(Cine);
+                _context.Enderecos.Remove(endereco);
 
 
                 await _context.SaveChangesAsync();
 
-                bs.Message = "Cinema deletado com sucesso.";
+                bs.Message = "Endereço deletado com sucesso.";
                 bs.Status = true;
 
                 return bs;
@@ -113,5 +115,6 @@ namespace FilmesDbConnection.Repositorys
                 return bs;
             }
         }
+
     }
 }
