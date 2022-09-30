@@ -16,6 +16,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IFilmeService,FilmeService>();
 builder.Services.AddScoped<IFilmeRepository,FilmeRepository>();
+builder.Services.AddScoped<ICinemaService, CinemaService>();
+builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

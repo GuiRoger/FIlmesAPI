@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FilmesDomain.Models;
+using FilmesServices.Models.In.Cinemas;
 using FilmesServices.Models.In.Filmes;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace FilmesServices.Profiles
 {
-    public class FilmesProfile : Profile
+    public class CinemaProfile : Profile
     {
-        
-        public FilmesProfile()
+        public CinemaProfile()
         {
-            CreateMap<CreateFilmeDto,Filme>();
-            CreateMap<UpdateFilmeDto,Filme>();
+            CreateMap<CreateCinemaDto, Cinema>();
+            CreateMap<UpdateCinemaDto, Cinema>();
         }
+
     }
 }

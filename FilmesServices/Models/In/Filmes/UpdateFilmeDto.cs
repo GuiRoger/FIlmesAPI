@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmesServices.Models.In
+namespace FilmesServices.Models.In.Filmes
 {
     public class UpdateFilmeDto
     {

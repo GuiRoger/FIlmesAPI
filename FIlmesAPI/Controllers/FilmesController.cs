@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using FilmesDomain.Models;
 using FilmesServices.Interfaces;
-using FilmesServices.Models.In;
+using FilmesServices.Models.In.Filmes;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
 namespace FilmesAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FilmesController : Controller
     {
