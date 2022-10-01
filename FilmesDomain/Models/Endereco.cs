@@ -21,5 +21,7 @@ namespace FilmesDomain.Models
 
         [Required(ErrorMessage = "Numero é um campo obrigatório!")]
         public int Numero { get; set; }
+
+        public Cinema Cinema { get; set; }
     }
 }
