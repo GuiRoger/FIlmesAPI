@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FilmesDomain.Models
@@ -14,7 +15,8 @@ namespace FilmesDomain.Models
         public int Id { get; set; }
         [Required(ErrorMessage ="O nome é obrigatório!")]
         public string Nome { get; set; }
-        public Endereco Endereco { get; set; }
+        [JsonIgnore]
+        public virtual Endereco Endereco { get; set; }
         public int EnderecoId { get; set; }
 
     }

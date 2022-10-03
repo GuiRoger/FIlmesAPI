@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace FilmesServices.Models.In.Cinemas
 {
-    public class UpdateCinemaDto
-    {      
-        [Required(ErrorMessage = "O nome é obrigatório!")]
-        public string Nome { get; set; }       
-     
+    public class ReadCinemaDto
+    {
+        public string Nome { get; set; }
+        [JsonIgnore]
+        public virtual Endereco Endereco { get; set; }
+        public int EnderecoId { get; set; }
 
     }
 }

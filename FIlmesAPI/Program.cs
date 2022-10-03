@@ -26,7 +26,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApiDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

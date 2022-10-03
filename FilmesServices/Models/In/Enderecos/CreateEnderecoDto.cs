@@ -18,5 +18,6 @@ namespace FilmesServices.Models.In.Enderecos
 
         [Required(ErrorMessage = "Numero é um campo obrigatório!")]
         public int Numero { get; set; }
+
     }
 }
