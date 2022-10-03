@@ -2,6 +2,7 @@
 using FilmesDomain.Models;
 using FilmesServices.Interfaces;
 using FilmesServices.Models.In.Enderecos;
+using FilmesServices.Models.In.Filmes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmesAPI.Controllers
@@ -58,7 +59,8 @@ namespace FilmesAPI.Controllers
 
             if (filme != null)
             {
-                return Ok(filme);
+                ReadEnderecoDto readFilme = _mapper.Map<ReadEnderecoDto>(filme);
+                return Ok(readFilme);
             }
             else
             {

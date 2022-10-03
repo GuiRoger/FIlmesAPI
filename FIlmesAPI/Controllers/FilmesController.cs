@@ -59,7 +59,8 @@ namespace FilmesAPI.Controllers
 
             if (filme != null)
             {
-                return Ok(filme);
+                ReadFilmeDto readFilme = _mapper.Map<ReadFilmeDto>(filme);
+                return Ok(readFilme);
             }
             else
             {

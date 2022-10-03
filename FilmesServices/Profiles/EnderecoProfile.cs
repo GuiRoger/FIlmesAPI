@@ -16,6 +16,7 @@ namespace FilmesServices.Profiles
         {
             CreateMap<CreateEnderecoDto, Endereco>();
             CreateMap<UpdateEnderecoDto, Endereco>();
+            CreateMap<Endereco,ReadEnderecoDto>();
         }
     }
 }

@@ -8,7 +8,6 @@ namespace FilmesServices.Models.In.Gerente
 {
     public class ReadGerenteDto
     {
-
         public string Name { get; set; }
     }
 }

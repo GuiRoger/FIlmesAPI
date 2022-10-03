@@ -56,11 +56,14 @@ namespace FilmesAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> RecuperarFilmePorId(int id)
         {
-            var filme = await _cinemaService.RecuperarCinemaPorId(id);
+            var cinema = await _cinemaService.RecuperarCinemaPorId(id);
 
-            if (filme != null)
+
+
+            if (cinema != null)
             {
-                return Ok(filme);
+                ReadCinemaDto readCinema = _mapper.Map<ReadCinemaDto>(cinema);
+                return Ok(readCinema);
             }
             else
             {
