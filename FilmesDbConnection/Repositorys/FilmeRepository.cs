@@ -14,10 +14,10 @@ namespace FilmesDbConnection.Repositorys
             _context = context;
         }
 
-        public async Task<IEnumerable<Filme>> ListarFilmes()
+        public async Task<IEnumerable<Filme>> ListarFilmes(int? classificacaoEtaria)
         {
 
-           var lstFilmes = await  _context.Filmes.ToListAsync();
+           var lstFilmes = await  _context.Filmes.Where(filme=> filme.ClassificacaoEtaria <= classificacaoEtaria).ToListAsync();
             return lstFilmes;
         }
 

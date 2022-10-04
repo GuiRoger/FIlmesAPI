@@ -19,7 +19,7 @@ namespace FilmesServices.Services
             _filmeRepo = filmeRepo;
         }
 
-        public async Task<IEnumerable<Filme>> RecuperaFilmes() => await _filmeRepo.ListarFilmes();
+        public async Task<IEnumerable<Filme>> RecuperaFilmes(int? classificacaoEtaria) => await _filmeRepo.ListarFilmes(classificacaoEtaria);
         
 
         public async Task<BaseRetorno> CriarFilme(Filme filme)

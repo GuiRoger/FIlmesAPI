@@ -11,7 +11,7 @@ namespace FilmesServices.Interfaces
     public interface IFilmeService
     {
 
-        public  Task<IEnumerable<Filme>> RecuperaFilmes();
+        public  Task<IEnumerable<Filme>> RecuperaFilmes(int? classificacaoEtaria);
         public  Task<BaseRetorno> CriarFilme(Filme filme);
         public  Task<Filme> RecuperarFilmePorId(int id);
         public  Task<Filme> AtualizarFilme(Filme filme,int id);

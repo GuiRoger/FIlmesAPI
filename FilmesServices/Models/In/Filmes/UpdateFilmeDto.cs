@@ -17,6 +17,7 @@ namespace FilmesServices.Models.In.Filmes
         public int Duracao { get; set; }
         [StringLength(100, ErrorMessage = "O nome do diretor não pode exceder 100 caracteres")]
         public string Diretor { get; set; }
+        public int? ClassificacaoEtaria { get; set; }
         public string Genero { get; set; }
     }
 }
