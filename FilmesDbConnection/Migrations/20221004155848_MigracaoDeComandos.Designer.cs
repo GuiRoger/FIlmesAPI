@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmesDbConnection.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20221004130918_CreateTableIntermediaryIntoFilmeAndCinemaWithSession")]
-    partial class CreateTableIntermediaryIntoFilmeAndCinemaWithSession
+    [Migration("20221004155848_MigracaoDeComandos")]
+    partial class MigracaoDeComandos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,9 +131,6 @@ namespace FilmesDbConnection.Migrations
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CinemaId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("FilmeId")
                         .HasColumnType("int");
 
@@ -144,7 +141,7 @@ namespace FilmesDbConnection.Migrations
 
                     b.HasIndex("CinemaId");
 
-                    b.HasIndex("CinemaId1");
+                    b.HasIndex("FilmeId");
 
                     b.ToTable("Sessao");
                 });
@@ -170,15 +167,15 @@ namespace FilmesDbConnection.Migrations
 
             modelBuilder.Entity("FilmesDomain.Models.Sessao", b =>
                 {
-                    b.HasOne("FilmesDomain.Models.Filme", "Filme")
+                    b.HasOne("FilmesDomain.Models.Cinema", "Cinema")
                         .WithMany("Sessoes")
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FilmesDomain.Models.Cinema", "Cinema")
+                    b.HasOne("FilmesDomain.Models.Filme", "Filme")
                         .WithMany("Sessoes")
-                        .HasForeignKey("CinemaId1")
+                        .HasForeignKey("FilmeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

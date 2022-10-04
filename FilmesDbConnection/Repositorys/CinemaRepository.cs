@@ -61,6 +61,8 @@ namespace FilmesDbConnection.Repositorys
 
         public async Task<Cinema> RecuperarCinemaPorId(int id)
         {
+
+
             return await _context.Cinemas.FirstOrDefaultAsync(g => g.Id == id);
         }
 

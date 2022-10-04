@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
 using FilmesDomain.Models;
 using FilmesServices.Interfaces;
+using FilmesServices.Models.In.Gerentes;
 using FilmesServices.Models.In.Sessoes;
+using GerentesServices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmesAPI.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class SessaoController : ControllerBase
     {
         private readonly ISessaoService _sessaoService;
@@ -42,6 +46,26 @@ namespace FilmesAPI.Controllers
             }
 
 
+        }
+        #endregion
+
+        #region Listar Sessoes
+        [HttpGet("{id}")]
+        public async Task<IActionResult> RecuperaSessaoPorId(int id) 
+        {
+            var Sessao = await _sessaoService.RecuperarSessaoPorId(id);
+
+
+
+            if (Sessao != null)
+            {
+                ReadSessaoDto readGerente = _mapper.Map<ReadSessaoDto>(Sessao);
+                return Ok(readGerente);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         #endregion
     }

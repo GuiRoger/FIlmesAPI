@@ -35,7 +35,7 @@ namespace FilmesDbConnection.Context
                 .HasForeignKey(sessao=>sessao.FilmeId);  
             
             builder.Entity<Sessao>()
-                .HasOne(sessao =>sessao.Filme)
+                .HasOne(sessao =>sessao.Cinema)
                 .WithMany(cinema=>cinema.Sessoes)
                 .HasForeignKey(sessao=>sessao.CinemaId);
         }
@@ -44,7 +44,7 @@ namespace FilmesDbConnection.Context
         public DbSet<Cinema> Cinemas { get; set; }  
         public DbSet<Endereco> Enderecos { get; set; }  
         public DbSet<Gerente> Gerentes { get; set; }  
-        public DbSet<Sessao> Sessoes { get; set; }  
+        public DbSet<Sessao> Sessao { get; set; }  
 
 
     }

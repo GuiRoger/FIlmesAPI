@@ -21,8 +21,8 @@ namespace FilmesDbConnection.Repositorys
         public async Task<IEnumerable<Sessao>> ListarSessoes()
         {
 
-            var lstSessoes = await _context.Sessoes.ToListAsync();
-            return lstSessoes;
+            var lstSessao = await _context.Sessao.ToListAsync();
+            return lstSessao;
         }
 
         public async Task<BaseRetorno> CriarSessao(Sessao newSessao)
@@ -33,7 +33,18 @@ namespace FilmesDbConnection.Repositorys
             {
                 try
                 {
-                    await _context.Sessoes.AddAsync(newSessao);
+                    newSessao.Filme = await _context.Filmes.FirstOrDefaultAsync(f=>f.Id == newSessao.FilmeId);
+                    newSessao.Cinema = await _context.Cinemas.FirstOrDefaultAsync(f=>f.Id == newSessao.CinemaId);
+
+                    if(newSessao.Filme==null && newSessao.Cinema == null)
+                    {
+                        bs.Message = "Filme ou Cinema não encontrado";
+                        bs.Status = false;
+                        return bs;
+                    }
+
+
+                    await _context.Sessao.AddAsync(newSessao);
                     await _context.SaveChangesAsync();
 
 
@@ -61,12 +72,12 @@ namespace FilmesDbConnection.Repositorys
 
         public async Task<Sessao> RecuperarSessaoPorId(int id)
         {
-            return await _context.Sessoes.FirstOrDefaultAsync(g => g.Id == id);
+            return await _context.Sessao.FirstOrDefaultAsync(g => g.Id == id);
         }
 
         public async Task<Sessao> AtualizarSessao(Sessao update, int id)
         {
-            Sessao SessaoParaAtualizar = await _context.Sessoes.FirstOrDefaultAsync(g => g.Id == id);
+            Sessao SessaoParaAtualizar = await _context.Sessao.FirstOrDefaultAsync(g => g.Id == id);
 
             if (SessaoParaAtualizar == null)
                 return null;
@@ -89,7 +100,7 @@ namespace FilmesDbConnection.Repositorys
             var bs = new BaseRetorno();
             try
             {
-                var Sessao = await _context.Sessoes.FirstOrDefaultAsync(g => g.Id == id);
+                var Sessao = await _context.Sessao.FirstOrDefaultAsync(g => g.Id == id);
                 if (Sessao == null)
                 {
 
@@ -98,7 +109,7 @@ namespace FilmesDbConnection.Repositorys
                     return bs;
                 }
 
-                _context.Sessoes.Remove(Sessao);
+                _context.Sessao.Remove(Sessao);
 
 
                 await _context.SaveChangesAsync();

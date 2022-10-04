@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmesDomain.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,21 +7,17 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace FilmesDomain.Models
+namespace FilmesServices.Models.In.Sessoes
 {
-    public class Sessao
+    public class ReadSessaoDto
     {
-
-        [Key]
-        [Required]
-
-        public int Id { get; set; }
         [JsonIgnore]
-        public virtual Cinema Cinema { get; set; } 
+        public virtual Cinema Cinema { get; set; }
         public int CinemaId { get; set; }
         [JsonIgnore]
-        public virtual Filme Filme { get; set; } 
-        public int FilmeId { get; set; } 
+        public virtual Filme Filme { get; set; }
+        public int FilmeId { get; set; }
         public DateTime HorarioDeEncerramento { get; set; }
+        public DateTime HorarioDeInicio { get; set; }
     }
 }

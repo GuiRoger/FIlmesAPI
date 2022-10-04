@@ -25,6 +25,8 @@ builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 builder.Services.AddScoped<IGerenteService, GerenteService>();
 builder.Services.AddScoped<IGerenteRepository, GerenteRepository>();
+builder.Services.AddScoped<ISessaoService, SessaoService>();
+builder.Services.AddScoped<ISessaoRepository, SessaoRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
