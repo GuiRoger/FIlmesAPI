@@ -21,14 +21,14 @@ namespace FilmesAPI.Controllers
             _mapper = mapper;
         }
 
-        #region RECUPERAR FILME
+        #region RECUPERAR CINEMA
         [HttpGet]
         public async Task<IEnumerable<Cinema>> RecuperarCinemas() => await _cinemaService.RecuperaCinemas();
         #endregion
 
-        #region CRIAR FILME
+        #region CRIAR CINEMA
         [HttpPost]
-        public async Task<IActionResult> CriarFilme([FromBody] CreateCinemaDto cinema)
+        public async Task<IActionResult> CriarCinema([FromBody] CreateCinemaDto cinema)
         {
 
             Cinema cinemaToCreate = _mapper.Map<Cinema>(cinema);
@@ -52,9 +52,9 @@ namespace FilmesAPI.Controllers
         }
         #endregion
 
-        #region RECUPERAR FILME POR ID
+        #region RECUPERAR CINEMA POR ID
         [HttpGet("{id}")]
-        public async Task<IActionResult> RecuperarFilmePorId(int id)
+        public async Task<IActionResult> RecuperarCinemaPorId(int id)
         {
             var cinema = await _cinemaService.RecuperarCinemaPorId(id);
 
@@ -93,7 +93,7 @@ namespace FilmesAPI.Controllers
         }
         #endregion
 
-        #region DELETAR FILME
+        #region DELETAR CINEMA
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletarCinema([FromRoute] int id)

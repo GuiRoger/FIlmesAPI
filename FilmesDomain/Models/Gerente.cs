@@ -11,10 +11,11 @@ namespace FilmesDomain.Models
     {
         [Key]
         [Required]
-
         public int Id { get; set; }
         [Required(ErrorMessage ="Nome é um campo obrigatório.")]
         public string Name { get; set; }
+
+        public virtual List<Cinema> Cinemas { get; set; }
 
     }
 }

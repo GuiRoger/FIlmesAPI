@@ -5,6 +5,9 @@ using FilmesDbConnection.Repositorys;
 using FilmesDomain.Interfaces;
 using FilmesServices.Interfaces;
 using FilmesServices.Services;
+using GerentesDbConnection.Repositorys;
+using GerentesDomain.Interfaces;
+using GerentesServices.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +23,8 @@ builder.Services.AddScoped<ICinemaService, CinemaService>();
 builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+builder.Services.AddScoped<IGerenteService, GerenteService>();
+builder.Services.AddScoped<IGerenteRepository, GerenteRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FilmesDomain.Models;
 using FilmesServices.Models.In.Cinemas;
-using FilmesServices.Models.In.Gerente;
+using FilmesServices.Models.In.Gerentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,10 @@ namespace FilmesServices.Profiles
         {
             CreateMap<CreateGerenteDto, Gerente>();
             CreateMap<UpdateGerenteDto, Gerente>();
-            CreateMap<Gerente, ReadGerenteDto>();
+            CreateMap<Gerente, ReadGerenteDto>()
+                .ForMember(gerente => gerente.Cinemas,opts=>opts
+                .MapFrom(gerente=> gerente.Cinemas.Select
+                (c => new {c.Id,c.Nome,c.Endereco,c.EnderecoId })));
         }
 
     }

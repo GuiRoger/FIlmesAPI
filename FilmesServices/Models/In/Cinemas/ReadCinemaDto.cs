@@ -1,4 +1,5 @@
 ﻿using FilmesDomain.Models;
+using FilmesServices.Models.In.Gerentes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,14 @@ namespace FilmesServices.Models.In.Cinemas
         public string Nome { get; set; }
         [JsonIgnore]
         public virtual Endereco Endereco { get; set; }
+
         public int EnderecoId { get; set; }
+        [JsonIgnore]
+        public virtual Gerente Gerente { get; set; }
+        public int GerenteId { get; set; }
+        
+       
+        //public int EnderecoId { get; set; }
 
     }
 }

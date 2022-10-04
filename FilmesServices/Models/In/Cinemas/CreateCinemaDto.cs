@@ -16,5 +16,9 @@ namespace FilmesServices.Models.In.Cinemas
 
         [Required(ErrorMessage = "O Endereço é obrigatório!")]
         public int EnderecoId { get; set; }
+        [Required(ErrorMessage = "É obrigatório te rum gerente em cada Cinema!")]
+        public int GerenteId { get; set; }
+
+
     }
 }

@@ -20,5 +20,7 @@ namespace FilmesDomain.Models
         [StringLength(100, ErrorMessage = "O nome do diretor não pode exceder 100 caracteres")]
         public string? Diretor { get; set; }
         public string? Genero { get; set; }
+
+        public virtual  List<Sessao> Sessoes { get; set; }
     }
 }

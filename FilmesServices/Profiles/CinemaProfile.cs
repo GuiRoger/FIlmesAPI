@@ -2,7 +2,7 @@
 using FilmesDomain.Models;
 using FilmesServices.Models.In.Cinemas;
 using FilmesServices.Models.In.Filmes;
-using FilmesServices.Models.In.Gerente;
+using FilmesServices.Models.In.Gerentes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

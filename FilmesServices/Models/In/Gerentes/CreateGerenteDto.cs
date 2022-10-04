@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FilmesServices.Models.In.Gerente
+namespace FilmesServices.Models.In.Gerentes
 {
-    public class UpdateGerenteDto
+    public class CreateGerenteDto
     {
-        [Required(ErrorMessage ="Informe um Id para poder atualizar um Gerente.")]
-        public int Id { get; set; }
         [Required(ErrorMessage ="Nome é um campo obrigatório.")]
         public string Name { get; set; }
+
     }
 }
