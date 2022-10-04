@@ -22,7 +22,17 @@ namespace FilmesAPI.Controllers
 
         #region RECUPERAR FILME
         [HttpGet]
-        public async Task<IEnumerable<Filme>> RecuperarFilmes([FromQuery]int? classificacaoEtaria) => await _filmService.RecuperaFilmes(classificacaoEtaria); 
+        public async Task<IActionResult> RecuperarFilmes([FromQuery] int? classificacaoEtaria)
+        {
+            var filme =  await _filmService.RecuperaFilmes(classificacaoEtaria);
+            if (filme != null)
+            {
+               List<ReadFilmeDto> lstFilmes =  _mapper.Map<List<ReadFilmeDto>>(filme.ToList());
+                return Ok(lstFilmes);
+            }
+            return NotFound();
+           
+        }
         #endregion
 
         #region CRIAR FILME

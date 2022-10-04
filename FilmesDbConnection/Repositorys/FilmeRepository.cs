@@ -16,8 +16,17 @@ namespace FilmesDbConnection.Repositorys
 
         public async Task<IEnumerable<Filme>> ListarFilmes(int? classificacaoEtaria)
         {
+            List<Filme> lstFilmes;
+            if (classificacaoEtaria != null)
+            {
 
-           var lstFilmes = await  _context.Filmes.Where(filme=> filme.ClassificacaoEtaria <= classificacaoEtaria).ToListAsync();
+                lstFilmes = await  _context.Filmes.Where(filme=> filme.ClassificacaoEtaria <= classificacaoEtaria).ToListAsync();
+            }
+            else
+            {
+                lstFilmes = await _context.Filmes.ToListAsync();
+            }
+
             return lstFilmes;
         }
 

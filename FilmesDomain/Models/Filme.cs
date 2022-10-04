@@ -21,7 +21,6 @@ namespace FilmesDomain.Models
         public string? Diretor { get; set; }
         public string? Genero { get; set; }
         public int? ClassificacaoEtaria { get; set; }
-
         public virtual  List<Sessao> Sessoes { get; set; }
     }
 }

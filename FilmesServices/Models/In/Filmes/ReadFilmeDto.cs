@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FilmesDomain.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace FilmesServices.Models.In.Filmes
         public string? Diretor { get; set; }
         public int? ClassificacaoEtaria { get; set; }
         public string? Genero { get; set; }
+        public virtual List<Sessao> Sessoes { get; set; }
     }
 }
