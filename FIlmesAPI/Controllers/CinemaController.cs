@@ -91,16 +91,17 @@ namespace FilmesAPI.Controllers
         {
             Cinema cinemaToUpdate = _mapper.Map<Cinema>(updatedCinema);
 
-            var returnFilme = await _cinemaService.AtualizarCinema(cinemaToUpdate, id);
+            var returnCinema = await _cinemaService.AtualizarCinema(cinemaToUpdate, id);
 
-            if (returnFilme != null)
+            if (returnCinema != null)
             {
-                return Ok(returnFilme);
+                ReadCinemaDto ReadCinemaDto = _mapper.Map<ReadCinemaDto>(returnCinema);
+                return Ok(ReadCinemaDto);
 
             }
             else
             {
-                return NotFound("Filme não encontrado.");
+                return NotFound("Cinema não encontrado.");
 
             }
         }
