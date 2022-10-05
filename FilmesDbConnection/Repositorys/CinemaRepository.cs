@@ -18,10 +18,18 @@ namespace FilmesDbConnection.Repositorys
             _context = context;
         }
 
-        public async Task<IEnumerable<Cinema>> ListarCinemas()
+        public async Task<IEnumerable<Cinema>> ListarCinemas(string? nomeDoFilme)
         {
 
             var lstCinemas = await _context.Cinemas.ToListAsync();
+            if (!string.IsNullOrWhiteSpace(nomeDoFilme))
+            {
+                IEnumerable<Cinema> query = from cine in lstCinemas
+                                            where cine.Sessoes.Any(sessao =>
+                                            sessao.Filme.Titulo == nomeDoFilme)
+                                            select cine;
+                return query;
+            }
             return lstCinemas;
         }
 

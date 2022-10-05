@@ -18,7 +18,7 @@ namespace FilmesServices.Services
             _cineRepo = cineRepo;
         }
 
-        public async Task<IEnumerable<Cinema>> RecuperaCinemas() => await _cineRepo.ListarCinemas();
+        public async Task<IEnumerable<Cinema>> RecuperaCinemas(string? nomeDoFilme) => await _cineRepo.ListarCinemas(nomeDoFilme);
 
 
         public async Task<BaseRetorno> CriarCinema(Cinema cinema)

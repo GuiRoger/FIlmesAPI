@@ -9,7 +9,7 @@ namespace FilmesDomain.Interfaces
 {
     public interface ICinemaRepository
     {
-        public Task<IEnumerable<Cinema>> ListarCinemas();
+        public Task<IEnumerable<Cinema>> ListarCinemas(string? nomeDoFilme);
         public Task<BaseRetorno> CriarCinema(Cinema newCinema);
         public Task<Cinema> RecuperarCinemaPorId(int id);
         public Task<Cinema> AtualizarCinema(Cinema updateCinema, int id);

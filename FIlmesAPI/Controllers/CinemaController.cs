@@ -23,7 +23,20 @@ namespace FilmesAPI.Controllers
 
         #region RECUPERAR CINEMA
         [HttpGet]
-        public async Task<IEnumerable<Cinema>> RecuperarCinemas() => await _cinemaService.RecuperaCinemas();
+        public async Task<IActionResult> RecuperarCinemas([FromQuery] string? nomeDoFilme)
+        {
+            var cinemas= await _cinemaService.RecuperaCinemas(nomeDoFilme); 
+
+            if (cinemas ==null)
+            {
+                return NotFound();
+
+            }
+
+            List<ReadCinemaDto> cinecine = _mapper.Map<List<ReadCinemaDto>>(cinemas);
+
+            return Ok(cinecine);
+        }
         #endregion
 
         #region CRIAR CINEMA
