@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace UsuariosDomain.Interfaces
     public interface ICadastroRepository
     {
 
-        public Task<BaseRetorno> CadastrarUsuario(Usuario userData);
+        public Task<BaseRetorno> CadastrarUsuario(IdentityUser<int> userIdentity, string password);
+        public Task<IdentityUser<int>> RecuperaUsuario(int id);
     }
 }

@@ -20,8 +20,8 @@ namespace UsuariosAPI.Controllers
         [HttpPost]
         public async Task< IActionResult> CadastrarUsuario(CreateUserDto userInfos)
         {
-            Usuario user = _mapper.Map<Usuario>(userInfos);
-            var result = await _cadService.CadastrarUsuario(user);
+          
+            var result = await _cadService.CadastrarUsuario(userInfos);
 
             if (result.Status)
             {
@@ -30,6 +30,18 @@ namespace UsuariosAPI.Controllers
             }
             return BadRequest(result.Mensagem);
 
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var searchUser = await _cadService.RecuperaUsuario(id);
+
+            if (searchUser == null)
+            {
+                return NotFound("Nenhum usuário encontrado com esse Id.Tente com outro Id.");
+            }
+            
+            return Ok(searchUser);
         }
 
 

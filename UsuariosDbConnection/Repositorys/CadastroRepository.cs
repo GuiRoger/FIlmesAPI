@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,32 +15,49 @@ namespace UsuariosDbConnection.Repositorys
     public class CadastroRepository : ICadastroRepository
     {
         private readonly ApiUserContextDb _context;
+        private readonly UserManager<IdentityUser<int>> _manager;
 
-        public CadastroRepository(ApiUserContextDb context)
+        public CadastroRepository(ApiUserContextDb context, UserManager<IdentityUser<int>> manager)
         {
             _context = context;
+            _manager = manager;
         }
-        public async Task<BaseRetorno> CadastrarUsuario(Usuario userData)
+        public async Task<BaseRetorno> CadastrarUsuario(IdentityUser<int> userIdentity, string password)
         {
-            var exist = await _context.Usuarios.FirstOrDefaultAsync(g=> g.Id == userData.Id);
+            var exist = await _manager.Users.FirstOrDefaultAsync(g=>g.Email == userIdentity.Email);
             var bs = new BaseRetorno();
             if (exist != null)
             {
 
-                bs.Mensagem = "Já existe um usuario com esses dados.";
+                bs.Mensagem = "Já existe um usuario com esse Email.";
                 bs.Status = false;
                 return bs;
                 
             }
 
-            await _context.Usuarios.AddAsync(userData);
-            await _context.SaveChangesAsync();
+            var resultRegister = await _manager.CreateAsync(userIdentity,password);
 
-            bs.Mensagem = "Cadastrado com sucesso.";
-            bs.Status = true;
+            if (resultRegister.Succeeded)
+            {
+                bs.Mensagem = "Cadastrado com sucesso.";
+                bs.Status = true;
+                return bs;
+            }
+                
+
+            bs.Mensagem = "Erro ao Cadastrar Usuário.";
+            bs.Status = false;
             return bs;
 
         }
+
+        public async Task<IdentityUser<int>> RecuperaUsuario(int id)
+        {
+
+            return await _manager.Users.FirstOrDefaultAsync(g => g.Id == id);
+        }
+
+        
 
 
 

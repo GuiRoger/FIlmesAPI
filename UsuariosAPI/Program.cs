@@ -1,6 +1,7 @@
 using FilmesDomain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using UsuariosDbConnection.Context;
 using UsuariosDbConnection.Repositorys;
 using UsuariosDomain.Interfaces;
@@ -18,6 +19,13 @@ builder.Services.AddScoped<ICadastroService, CadastroService>();
 builder.Services.AddScoped<ICadastroRepository, CadastroRepository>();
 builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>()
     .AddEntityFrameworkStores<ApiUserContextDb>();
+
+builder.Services.Configure<IdentityOptions>(x =>
+{
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequireUppercase = false;
+    x.Password.RequiredLength = 8;
+});
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<ApiUserContextDb>(options =>

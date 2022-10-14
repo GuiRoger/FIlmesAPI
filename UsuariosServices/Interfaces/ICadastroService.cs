@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace UsuariosServices.Interfaces
 {
     public interface ICadastroService
     {
-        public Task<BaseRetorno> CadastrarUsuario(Usuario userData); 
+        public Task<BaseRetorno> CadastrarUsuario(CreateUserDto userData); 
+        public Task<IdentityUser<int>> RecuperaUsuario(int id); 
     }
 }
