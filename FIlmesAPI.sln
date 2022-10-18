@@ -19,13 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmesServices", "FilmesSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmesDbConnection", "FilmesDbConnection\FilmesDbConnection.csproj", "{9C1CE2A4-1D62-43AB-A352-3E4F4EC2D5E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosAPI", "UsuariosAPI\UsuariosAPI.csproj", "{A052F0E2-04A8-4FD5-BE0E-7E9FF445383A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosAPI", "UsuariosAPI\UsuariosAPI.csproj", "{A052F0E2-04A8-4FD5-BE0E-7E9FF445383A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosServices", "UsuariosServices\UsuariosServices.csproj", "{0D2AF169-2F74-475B-885A-7D520EDAEDF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosServices", "UsuariosServices\UsuariosServices.csproj", "{0D2AF169-2F74-475B-885A-7D520EDAEDF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosDomain", "UsuariosDomain\UsuariosDomain.csproj", "{8A932220-8CE4-4D59-83DE-EA8F971391A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosDomain", "UsuariosDomain\UsuariosDomain.csproj", "{8A932220-8CE4-4D59-83DE-EA8F971391A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosDbConnection", "UsuariosDbConnection\UsuariosDbConnection.csproj", "{9B542855-3806-4AC2-8FD9-9AE93BE63BD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsuariosDbConnection", "UsuariosDbConnection\UsuariosDbConnection.csproj", "{9B542855-3806-4AC2-8FD9-9AE93BE63BD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

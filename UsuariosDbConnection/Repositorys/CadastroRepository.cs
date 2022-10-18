@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosDbConnection.Context;
 using UsuariosDomain.Interfaces;
-using UsuariosDomain.Models;
+using UsuariosDomain.Models.Retornos;
 
 namespace UsuariosDbConnection.Repositorys
 {

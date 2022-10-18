@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UsuariosDomain.Models;
+using UsuariosDomain.Models.Retornos;
 using UsuariosServices.Models.User;
 
 namespace UsuariosServices.Interfaces

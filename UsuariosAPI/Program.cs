@@ -17,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICadastroService, CadastroService>();
 builder.Services.AddScoped<ICadastroRepository, CadastroRepository>();
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddIdentity<IdentityUser<int>,IdentityRole<int>>()
     .AddEntityFrameworkStores<ApiUserContextDb>();
 

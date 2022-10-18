@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UsuariosDomain.Models
+namespace UsuariosDomain.Models.Retornos
 {
     public class BaseRetorno
     {
